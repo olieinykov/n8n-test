@@ -8,7 +8,7 @@ router.get('/entries', async function(req, res, next) {
   const response = await db.request().query('SELECT 1 AS ok');
   console.log("entries response", response);
   // return response.recordset[0].ok === 1;
-  res.send('respond with a resource ENTRIES', response.recordset);
+  return res.sendStatus(200).json(response);
 });
 
 module.exports = router;
