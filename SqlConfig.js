@@ -3,7 +3,7 @@ import sql from 'mssql';
 const config = {
     server: process.env.DB_HOST,
     port: Number(process.env.SQL_PORT || 1433),
-    database: process.env.SQL_DB,
+    database: "lt2k918ktl-Prod",
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     options: {
