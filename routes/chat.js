@@ -13,8 +13,10 @@ router.get('/entries', async function(req, res, next) {
     WHERE TABLE_TYPE = 'BASE TABLE'
   `);
 
+  console.log("response ==>", response);
+
   res.status(200).json(response.recordset);
-  return res.sendStatus(200).json(response);
+  // return res.sendStatus(200).json(response);
 });
 
 module.exports = router;
