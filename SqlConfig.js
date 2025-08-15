@@ -1,4 +1,4 @@
-import sql from 'mssql';
+const sql = require('mssql');
 
 const config = {
     server: process.env.DB_HOST,
@@ -15,7 +15,7 @@ const config = {
 
 let pool = null;
 
-export async function getDb() {
+async function getDb() {
     console.log("<<<< Start DEBUG DB CONNECTION >>>>");
     console.log("DB_HOST", process.env.DB_HOST);
     console.log("DB_USER", process.env.DB_USER);
@@ -26,4 +26,8 @@ export async function getDb() {
     if (pool?.connected) return pool;
     pool = await sql.connect(config);
     return pool;
+}
+
+module.exports = {
+    getDb
 }

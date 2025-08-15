@@ -1,7 +1,7 @@
 var express = require('express');
 const { getDb } = require("../SqlConfig");
 var router = express.Router();
-import sql from 'mssql';
+var sql = require('mssql');
 
 /* GET users listing. */
 router.get('/entries', async function(req, res, next) {
