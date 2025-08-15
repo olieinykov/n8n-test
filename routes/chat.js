@@ -8,10 +8,11 @@ router.get('/entries', async function(req, res, next) {
   const response = await db.request().query(`
     SELECT 
       t.name AS tableName,
-      s.name AS schemaName
+      s.name AS schemaName,
+      CASE WHEN t.is_ms_shipped = 1 THEN 'System' ELSE 'User' END AS tableType
     FROM sys.tables t
     INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
-    ORDER BY s.name, t.name
+    ORDER BY t.is_ms_shipped, s.name, t.name
   `);
 
   console.log("response ==>", response);
