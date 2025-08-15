@@ -7,10 +7,11 @@ router.get('/entries', async function(req, res, next) {
   const db = await getDb();
   const response = await db.request().query(`
     SELECT 
-      TABLE_NAME AS tableName,
-      TABLE_SCHEMA AS schemaName
-    FROM INFORMATION_SCHEMA.TABLES
-    WHERE TABLE_TYPE = 'BASE TABLE'
+      t.name AS tableName,
+      s.name AS schemaName
+    FROM sys.tables t
+    INNER JOIN sys.schemas s ON t.schema_id = s.schema_id
+    ORDER BY s.name, t.name
   `);
 
   console.log("response ==>", response);
